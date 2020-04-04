@@ -1,7 +1,6 @@
 # <=>  Naomi-Bot-Open-Source Project <=>
 # Simple to use embed paginator with reaction control
 
-from datetime import datetime
 from discord import Embed
 from discord.ext.commands import Context
 from asyncio import TimeoutError
