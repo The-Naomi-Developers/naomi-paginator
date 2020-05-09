@@ -1,11 +1,12 @@
-# Paginator
+# Naomi Paginator
 Simple paginator with reaction control, written in Python for `discord.py` bots.
+Used in our bot (https://naomibot.pw)
 
 # Usage:
 ```py
 import discord
 from discord.ext import commands
-from paginator import Paginator
+from naomi_paginator import Paginator
 
 bot = commands.Bot(command_prefix='!')
 
@@ -24,6 +25,11 @@ async def paginate(ctx):
   await p.call_controller()
 
 bot.run('token')
+```
+
+# Installing
+```sh
+$ pip3 install git+https://github.com/Naomi-Bot-Open-Source/naomi-paginator
 ```
 
 # License
