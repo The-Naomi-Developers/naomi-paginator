@@ -24,7 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from discord import Embed
+from discord import Embed, errors.NotFound
 from discord.ext.commands import Context
 from asyncio import TimeoutError
 from typing import Union
@@ -51,7 +51,11 @@ class Paginator:
 
 
   async def _close_session(self):
-    await self.controller.delete()
+    try:
+      await self.controller.delete()
+    except errors.NotFound:
+      pass
+    
     del self.pages
     del self.reactions
     del self.current
