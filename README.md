@@ -2,7 +2,7 @@
 Simple paginator with reaction control, written in Python for `discord.py` bots.
 Used in our bot (https://naomi.life)
 
-[![CodeFactor](https://www.codefactor.io/repository/github/the-naomi-developers/chromechain/badge/master)](https://www.codefactor.io/repository/github/the-naomi-developers/chromechain/overview/master)
+[![CodeFactor](https://www.codefactor.io/repository/github/the-naomi-developers/naomi-paginator/badge)](https://www.codefactor.io/repository/github/the-naomi-developers/naomi-paginator)
 
 # Usage:
 ```py
