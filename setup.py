@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
-"""MIT License
+"""
+MIT License
 
-Copyright (c) 2020 Naomi-Bot-Open-Source
+Copyright (c) 2020 Naomi-Dev
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,9 +27,7 @@ SOFTWARE.
 from setuptools import setup
 
 
-version = '1.1'
-readme = ''
-requirements = ''
+version = '1.2'
 
 
 with open('README.md') as f:
@@ -39,8 +38,8 @@ with open('requirements.txt') as f:
 
 
 setup(name='naomi-paginator',
-  author='Naomi-Bot-Open-Source',
-  url='https://github.com/Naomi-Bot-Open-Source/naomi-paginator',
+  author='Naomi-Dev',
+  url='https://github.com/Naomi-Dev/naomi-paginator',
   version=version,
   packages=['naomi_paginator'],
   license='MIT',
