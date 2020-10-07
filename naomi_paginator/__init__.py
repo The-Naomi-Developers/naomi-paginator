@@ -3,7 +3,7 @@
 """
 MIT License
 
-Copyright (c) 2020 Naomi-Bot-Open-Source
+Copyright (c) 2020 Naomi-Dev
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,24 +24,27 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from discord import Embed, errors
+from discord import Embed
+from discord import errors
 from discord.ext.commands import Context
-from asyncio import TimeoutError
+
+from asyncio import TimeoutError as AsyncioTimeoutError
 from typing import Union
 
 
 class Paginator:
   def __init__(self, ctx: Context, reactions: Union[tuple, list] = None, timeout: int = 120):
-    """ Init paginator.
-
-    Args:
-    -----
-    * ctx: `commands.Context`: current context
-
-    * reactions: `tuple` or `list`: custom emoji list (default: None)
-      tip: [left_arrow, destroy_embed, right_arrow] - only 3 emojis
-
-    * timeout: `int`: timeout in seconds (default: 120)
+    """ Init a new Paginator instance.
+    
+    Parameters
+    ----------
+    ctx : commands.Context
+      Cuurrent command context.
+    reactions : Optional[Union[tuple, list]]
+      Custom reaction emojis for paginator.
+      [left_arrow, destroy_embed, right_arrow] - only 3 emojis.
+    timeout : int
+      Timeout in seconds (default: 120)
     """
     self.reactions = reactions or ('⬅', '⏹', '➡')
     self.pages = []
@@ -51,6 +54,7 @@ class Paginator:
 
 
   async def _close_session(self):
+    """ Close current paginator session and delete message. """
     try:
       await self.controller.delete()
     except errors.NotFound:
@@ -63,42 +67,46 @@ class Paginator:
 
 
   def add_page(self, embed: Embed):
-    """ Add new page to paginator.
+    """ Add a new page to paginator.
     
-    Args:
-    -----
-    * embed: discord.Embed
+    Parameters
+    ----------
+    embed : discord.Embed
+      discord.Embed object that represents a new paginator page.
     """
     self.pages.append(embed)
 
 
   async def call_controller(self, start_page: int = 0):
-    """ Call controller.
+    """ Call paginator interface.
     
-    Args:
-    -----
-    * start_page: int: start paginator from given page (default: 0 - first added page)
+    Parameters
+    ----------
+    start_page : int
+      Start paginator from the given page (default: 0 - first page)
     """
     if start_page > len(self.pages) - 1:
-      raise IndexError(f'Currently added {len(self.pages)} pages,\
-        but you tried to call controller with start_page = {start_page}')
+      raise IndexError(f"Currently added {len(self.pages)} pages, but you"
+                       f"tried to call controller with start_page = {start_page}")
 
     self.controller = await self.ctx.send(embed=self.pages[start_page])
 
     for emoji in self.reactions:
       await self.controller.add_reaction(emoji)
 
+    author_check = lambda r, u: u.id == self.ctx.author.id \
+      and r.emoji in self.reactions and r.message.id == self.controller.id
+
     while True:
       try:
-        response = await self.ctx.bot.wait_for('reaction_add', timeout=self.timeout,
-          check=lambda r, u: u.id == self.ctx.author.id and r.emoji in self.reactions\
-            and r.message.id == self.controller.id)
-      except TimeoutError:
+        response = await self.ctx.bot.wait_for('reaction_add',
+          timeout=self.timeout, check=author_check)
+      except AsyncioTimeoutError:
         break
       
       try:
         await self.controller.remove_reaction(response[0], response[1])
-      except:
+      except Exception:
         pass
       
       if response[0].emoji == self.reactions[0]:
