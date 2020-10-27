@@ -29,6 +29,8 @@ from discord import errors
 from discord.ext.commands import Context
 
 from asyncio import TimeoutError as AsyncioTimeoutError
+from asyncio import wait as asyncioWait
+from asyncio import FIRST_COMPLETED as ASYNCIO_FIRST_COMPLETED
 from typing import Union
 
 
@@ -99,8 +101,19 @@ class Paginator:
 
     while True:
       try:
-        response = await self.ctx.bot.wait_for('reaction_add',
-          timeout=self.timeout, check=author_check)
+        tasks = [
+          self.ctx.bot.wait_for('reaction_add',
+            timeout=self.timeout, check=author_check),
+          self.ctx.bot.wait_for('reaction_remove',
+            timeout=self.timeout, check=author_check)]
+        
+        tasks_result, tasks = await asyncioWait(tasks, return_when=ASYNCIO_FIRST_COMPLETED)
+        
+        for task in tasks:
+            task.cancel()
+        for task in tasks_result:
+            response = await task
+            
       except AsyncioTimeoutError:
         break
       
