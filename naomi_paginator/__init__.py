@@ -33,7 +33,7 @@ from asyncio import wait as asyncioWait
 from asyncio import FIRST_COMPLETED as ASYNCIO_FIRST_COMPLETED
 from typing import Union
 
-__version__ = '1.3.0'
+__version__ = '1.3.1'
 __author__ = 'The-Naomi-Developers'
 
 
