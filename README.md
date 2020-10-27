@@ -2,7 +2,8 @@
 Simple paginator with reaction control, written in Python for `discord.py` bots.
 Used in our bot (https://naomi.life)
 
-[![CodeFactor](https://www.codefactor.io/repository/github/the-naomi-developers/naomi-paginator/badge)](https://www.codefactor.io/repository/github/the-naomi-developers/naomi-paginator)
+[![CodeFactor](https://www.codefactor.io/repository/github/the-naomi-developers/naomi-paginator/badge)](https://www.codefactor.io/repository/github/the-naomi-developers/naomi-paginator) 
+[![PyPI version](https://badge.fury.io/py/naomi-paginator.svg)](https://badge.fury.io/py/naomi-paginator) 
 
 # Usage:
 ```py
