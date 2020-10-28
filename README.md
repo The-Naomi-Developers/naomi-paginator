@@ -34,7 +34,7 @@ bot.run('token')
 
 # Installing
 ```sh
-$ pip3 install git+https://github.com/naomi-dev/naomi-paginator
+$ pip3 install git+https://github.com/The-Naomi-Developers/naomi-paginator
 ```
 
 # License
