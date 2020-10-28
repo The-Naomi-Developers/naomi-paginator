@@ -3,7 +3,7 @@
 """
 MIT License
 
-Copyright (c) 2020 Naomi-Dev
+Copyright (c) 2020 The-Naomi-Developers
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -33,15 +33,18 @@ from asyncio import wait as asyncioWait
 from asyncio import FIRST_COMPLETED as ASYNCIO_FIRST_COMPLETED
 from typing import Union
 
+__version__ = '1.3.1'
+__author__ = 'The-Naomi-Developers'
+
 
 class Paginator:
   def __init__(self, ctx: Context, reactions: Union[tuple, list] = None, timeout: int = 120):
-    """ Init a new Paginator instance.
-    
+    """Init a new Paginator instance.
+
     Parameters
     ----------
     ctx : commands.Context
-      Cuurrent command context.
+      Current command context.
     reactions : Optional[Union[tuple, list]]
       Custom reaction emojis for paginator.
       [left_arrow, destroy_embed, right_arrow] - only 3 emojis.
@@ -56,7 +59,7 @@ class Paginator:
 
 
   async def _close_session(self):
-    """ Close current paginator session and delete message. """
+    """Close current paginator session and delete message."""
     try:
       await self.controller.delete()
     except errors.NotFound:
@@ -69,8 +72,8 @@ class Paginator:
 
 
   def add_page(self, embed: Embed):
-    """ Add a new page to paginator.
-    
+    """Add a new page to paginator.
+
     Parameters
     ----------
     embed : discord.Embed
@@ -80,8 +83,8 @@ class Paginator:
 
 
   async def call_controller(self, start_page: int = 0):
-    """ Call paginator interface.
-    
+    """Call paginator interface.
+
     Parameters
     ----------
     start_page : int

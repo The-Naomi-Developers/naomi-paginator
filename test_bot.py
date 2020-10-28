@@ -2,7 +2,7 @@
 
 """MIT License
 
-Copyright (c) 2020 Naomi-Bot-Open-Source
+Copyright (c) 2020 The-Naomi-Developers
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,9 +28,7 @@ from discord.ext import commands
 
 from naomi_paginator import Paginator
 
-
 bot = commands.Bot(command_prefix='!')
-token = 'your-bot-token'
 
 @bot.event
 async def on_ready():
@@ -39,12 +37,12 @@ async def on_ready():
 
 @bot.command()
 async def paginate(ctx):
-  """ Paginator test command """
+  """Paginator test command."""
   p = Paginator(ctx)
 
-  embeds = ( discord.Embed(color=0xff0000, title='Embed #1', description='Test starts here'),
-             discord.Embed(color=0x00ff00, title='Embed #2', description='Second embed...'),
-             discord.Embed(color=0x0000ff, title='Embed #3', description='Last embed') )
+  embeds = (discord.Embed(color=0xff0000, title='Embed #1', description='Test starts here'),
+            discord.Embed(color=0x00ff00, title='Embed #2', description='Second embed...'),
+            discord.Embed(color=0x0000ff, title='Embed #3', description='Last embed'))
 
   for x in embeds:
     p.add_page(x)
@@ -52,4 +50,4 @@ async def paginate(ctx):
   await p.call_controller()
 
 
-bot.run(token)
+bot.run('token')

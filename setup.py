@@ -3,7 +3,7 @@
 """
 MIT License
 
-Copyright (c) 2020 Naomi-Dev
+Copyright (c) 2020 The-Naomi-Developers
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,11 +23,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
 from setuptools import setup
 
 
-version = '1.2'
+__version__ = '1.3.1'
+__author__ = 'The-Naomi-Developers'
 
 
 with open('README.md') as f:
@@ -38,13 +38,19 @@ with open('requirements.txt') as f:
 
 
 setup(name='naomi-paginator',
-  author='Naomi-Dev',
-  url='https://github.com/Naomi-Dev/naomi-paginator',
-  version=version,
-  packages=['naomi_paginator'],
-  license='MIT',
-  description='Simple Embed paginator written in Python for discord.py bots',
-  long_description=readme,
-  include_package_data=True,
-  install_requires=requirements
-)
+      author=__author__,
+      url='https://github.com/The-Naomi-Developers/naomi-paginator',
+      version=__version__,
+      packages=['naomi_paginator'],
+      license='MIT',
+      classifiers=[
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+      ],
+      description='Simple Embed paginator written in Python for discord.py bots',
+      long_description=readme,
+      long_description_content_type="text/markdown",
+      include_package_data=True,
+      install_requires=requirements)

@@ -2,7 +2,8 @@
 Simple paginator with reaction control, written in Python for `discord.py` bots.
 Used in our bot (https://naomi.life)
 
-[![CodeFactor](https://www.codefactor.io/repository/github/the-naomi-developers/naomi-paginator/badge)](https://www.codefactor.io/repository/github/the-naomi-developers/naomi-paginator)
+[![CodeFactor](https://www.codefactor.io/repository/github/the-naomi-developers/naomi-paginator/badge)](https://www.codefactor.io/repository/github/the-naomi-developers/naomi-paginator) 
+[![PyPI version](https://badge.fury.io/py/naomi-paginator.svg)](https://badge.fury.io/py/naomi-paginator) 
 
 # Usage:
 ```py
@@ -15,14 +16,12 @@ bot = commands.Bot(command_prefix='!')
 
 @bot.command()
 async def paginate(ctx):
-  """
-  Paginator test command.
-  """
+  """Paginator test command."""
   p = Paginator(ctx)
 
-  embeds = ( discord.Embed(color=0xff0000, title='Embed #1', description='Test starts here'),
-             discord.Embed(color=0x00ff00, title='Embed #2', description='Second embed...'),
-             discord.Embed(color=0x0000ff, title='Embed #3', description='Last embed') )
+  embeds = (discord.Embed(color=0xff0000, title='Embed #1', description='Test starts here'),
+            discord.Embed(color=0x00ff00, title='Embed #2', description='Second embed...'),
+            discord.Embed(color=0x0000ff, title='Embed #3', description='Last embed'))
 
   for x in embeds:
     p.add_page(x)
@@ -34,14 +33,18 @@ bot.run('token')
 
 # Installing
 ```sh
+# From source:
 $ pip3 install git+https://github.com/The-Naomi-Developers/naomi-paginator
+
+# From PyPI:
+$ pip3 install naomi-paginator
 ```
 
 # License
 ```
 MIT License
 
-Copyright (c) 2020 Naomi-Dev
+Copyright (c) 2020 The-Naomi-Developers
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
